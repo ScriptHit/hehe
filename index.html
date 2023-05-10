@@ -57,45 +57,47 @@
     <h1>Amor, cuzinho hj?</h1>
     <button id="sim-btn" onclick="redirect()">SIM</button>
     <button id="nao-btn">NÃO</button>
-    <script>
-        var naoBtn = document.getElementById('nao-btn');
-        var simBtn = document.getElementById('sim-btn');
-        var moveCount = 0;
-        var limit = 6; // Número de vezes que o botão "NÃO" deve se mover antes do "SIM" começar a seguir o cursor
+<script>
+    var naoBtn = document.getElementById('nao-btn');
+    var simBtn = document.getElementById('sim-btn');
+    var moveCount = 0;
+    var limit = 3; // Número de vezes que o botão "NÃO" deve se mover antes do "SIM" começar a seguir o cursor
 
-        function moveButton(e) {
-            var maxX = window.innerWidth - e.target.offsetWidth;
-            var maxY = window.innerHeight - e.target.offsetHeight;
+    function moveButton(e) {
+        var maxX = window.innerWidth - e.target.offsetWidth;
+        var maxY = window.innerHeight - e.target.offsetHeight;
 
-            var newX = Math.floor(Math.random() * maxX);
-            var newY = Math.floor(Math.random() * maxY);
+        var newX = Math.floor(Math.random() * maxX);
+        var newY = Math.floor(Math.random() * maxY);
 
-            naoBtn.style.position = 'absolute';
-            naoBtn.style.left = newX + 'px';
-            naoBtn.style.top = newY + 'px';
+        naoBtn.style.position = 'absolute';
+        naoBtn.style.left = newX + 'px';
+        naoBtn.style.top = newY + 'px';
 
-            moveCount++;
+        moveCount++;
 
-            if (moveCount >= limit) {
-                document.addEventListener('mousemove', function(e) {
-                    simBtn.style.position = 'absolute';
-                    simBtn.style.left = e.clientX + 'px';
-                    simBtn.style.top = e.clientY + 'px';
-                });
-            }
+        if (moveCount >= limit) {
+            document.addEventListener('mousemove', function(e) {
+                var btnWidth = simBtn.offsetWidth / 2;
+                var btnHeight = simBtn.offsetHeight / 2;
+                simBtn.style.position = 'absolute';
+                simBtn.style.left = e.clientX - btnWidth + 'px';
+                simBtn.style.top = e.clientY - btnHeight + 'px';
+            });
         }
+    }
 
-        function mouseDownHandler(e) {
-            moveButton(e);
-            naoBtn.removeEventListener('mousedown', mouseDownHandler);
-            naoBtn.addEventListener('mouseover', moveButton);
-        }
+    function mouseDownHandler(e) {
+        moveButton(e);
+        naoBtn.removeEventListener('mousedown', mouseDownHandler);
+        naoBtn.addEventListener('mouseover', moveButton);
+    }
 
-        naoBtn.addEventListener('mousedown', mouseDownHandler);
+    naoBtn.addEventListener('mousedown', mouseDownHandler);
 		
-        function redirect() {
-            window.location.href = "https://www.youtube.com/shorts/ptjOyMwADH8";
-        }
-    </script>
+    function redirect() {
+        window.location.href = "https://www.youtube.com/shorts/ptjOyMwADH8";
+    }
+</script>
 </body>
 </html>
