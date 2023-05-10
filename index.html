@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brincadeira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #A020F0;
+            text-align: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        h1 {
+            color: white;
+            position: absolute;
+            top: 40%;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 2em;
+        }
+
+        #sim-btn, #nao-btn {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 12px;
+        }
+
+        #sim-btn {
+            background-color: #32CD32;
+        }
+
+        #sim-btn:hover {
+            background-color: #3CB371;
+        }
+
+        #nao-btn {
+            background-color: #e74c3c;
+        }
+
+        #nao-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Amor, cuzinho hj?</h1>
+    <button id="sim-btn" onclick="redirect()">SIM</button>
+    <button id="nao-btn">NÃO</button>
+    <script>
+        var naoBtn = document.getElementById('nao-btn');
+        var simBtn = document.getElementById('sim-btn');
+        var moveCount = 0;
+        var limit = 6; // Número de vezes que o botão "NÃO" deve se mover antes do "SIM" começar a seguir o cursor
+
+        function moveButton(e) {
+            var maxX = window.innerWidth - e.target.offsetWidth;
+            var maxY = window.innerHeight - e.target.offsetHeight;
+
+            var newX = Math.floor(Math.random() * maxX);
+            var newY = Math.floor(Math.random() * maxY);
+
+            naoBtn.style.position = 'absolute';
+            naoBtn.style.left = newX + 'px';
+            naoBtn.style.top = newY + 'px';
+
+            moveCount++;
+
+            if (moveCount >= limit) {
+                document.addEventListener('mousemove', function(e) {
+                    simBtn.style.position = 'absolute';
+                    simBtn.style.left = e.clientX + 'px';
+                    simBtn.style.top = e.clientY + 'px';
+                });
+            }
+        }
+
+        function mouseDownHandler(e) {
+            moveButton(e);
+            naoBtn.removeEventListener('mousedown', mouseDownHandler);
+            naoBtn.addEventListener('mouseover', moveButton);
+        }
+
+        naoBtn.addEventListener('mousedown', mouseDownHandler);
+		
+        function redirect() {
+            window.location.href = "https://www.youtube.com/shorts/ptjOyMwADH8";
+        }
+    </script>
+</body>
+</html>
