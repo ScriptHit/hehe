@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Brincadeira</title>
+    <title>Cuzin, minha vida?</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,14 +54,14 @@
     </style>
 </head>
 <body>
-    <h1>Amor, cuzinho hj?</h1>
+    <h1>Amor, cuzinho hj?🥺🥺</h1>
     <button id="sim-btn" onclick="redirect()">SIM</button>
     <button id="nao-btn">NÃO</button>
 <script>
     var naoBtn = document.getElementById('nao-btn');
     var simBtn = document.getElementById('sim-btn');
     var moveCount = 0;
-    var limit = 3; // Número de vezes que o botão "NÃO" deve se mover antes do "SIM" começar a seguir o cursor
+    var limit = 6; // Número de vezes que o botão "NÃO" deve se mover antes do "SIM" começar a seguir o cursor
 
     function moveButton(e) {
         var maxX = window.innerWidth - e.target.offsetWidth;
@@ -75,6 +75,10 @@
         naoBtn.style.top = newY + 'px';
 
         moveCount++;
+
+        // Aumentar tamanho do botão "SIM"
+        simBtn.style.fontSize = (1.5 + moveCount * 0.1) + 'em';
+        simBtn.style.padding = (10 + moveCount * 2) + 'px ' + (20 + moveCount * 2) + 'px';
 
         if (moveCount >= limit) {
             document.addEventListener('mousemove', function(e) {
